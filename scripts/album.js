@@ -28,6 +28,21 @@ var albumMarconi = {
     ]
 };
 
+var albumHarper = {
+    title: 'Burn to Shine',
+    artist: 'Ben Harper',
+    label: 'Virgin',
+    year: '2000',
+    albumArtUrl: 'assets/images/album_covers/22s.png',
+    songs: [
+        { title: 'Alone', duration: '3:58' },
+        { title: 'The Woman in You', duration: '5:41' },
+        { title: 'Less', duration: '4:05' },
+        { title: 'Two Hands of a Prayer', duration: '7:50' },
+        { title: 'Please Bleed', duration: '4:37' }
+    ]
+};
+
 var createSongRow = function(songNumber, songName, songLength) {
     var template =
         '<tr class="album-view-song-item">'
@@ -40,12 +55,14 @@ var createSongRow = function(songNumber, songName, songLength) {
     return template;
 };
 
+var albumTitle = document.getElementsByClassName('album-view-title')[0];
+var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+var albumImage = document.getElementsByClassName('album-cover-art')[0];
+var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
+
 var setCurrentAlbum = function(album) {
-    var albumTitle = document.getElementsByClassName('album-view-title')[0];
-    var albumArtist = document.getElementsByClassName('album-view-artist')[0];
-    var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
-    var albumImage = document.getElementsByClassName('album-cover-art')[0];
-    var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
+
  
     albumTitle.firstChild.nodeValue = album.title;
     albumArtist.firstChild.nodeValue = album.artist;
@@ -61,4 +78,14 @@ var setCurrentAlbum = function(album) {
  
 window.onload = function() {
     setCurrentAlbum(albumPicasso);
-};
+   
+   var albums = [albumPicasso, albumMarconi, albumHarper];
+   var index = 1;   
+   albumImage.addEventListener("click", function(event) {
+     setCurrentAlbum(albums[index]);
+     index++;
+     if (index == albums.length) {
+       index = 0;
+     }
+   });
+ };
