@@ -121,12 +121,14 @@ var setCurrentAlbum = function(album) {
 };
 
 var setCurrentTimeInPlayerBar = function(currentTime) {
-	$('.current-time').text(currentTime);
+	var $currentTime = $('.seek-control .current-time');
+    $currentTime.text(currentTime);
 };
 
-var setTotalTimeInPlayerBar = function() {
-	$('.total-time').text(totalTime);
-}
+var setTotalTimeInPlayerBar = function(totalTime) {
+	var $totalTime = $('.seek-control .total-time');
+  	$totalTime.text(totalTime)
+};
 
 var filterTimeCode = function(timeInSeconds) {
 	var totalSeconds = parseFloat(timeInSeconds);
@@ -134,7 +136,7 @@ var filterTimeCode = function(timeInSeconds) {
 	var wholeSeconds = Math.floor(totalSeconds % 60);	
 	
 	if(wholeSeconds < 10) {
-		return wholeMinutes = ":0" + wholeSeconds;
+		return wholeMinutes = "0:0" + wholeSeconds;
 	} else {
 		return wholeMinutes + ":" + wholeSeconds;
 	}
